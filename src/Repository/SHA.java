@@ -13,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public class SHA {
     
-    public String makeHash(String text){
+    public static String makeHash(String text){
         MessageDigest md = null;
         String hash = "";
         

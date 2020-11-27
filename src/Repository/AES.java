@@ -7,6 +7,8 @@ package Repository;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
@@ -21,6 +23,14 @@ import javax.crypto.spec.SecretKeySpec;
 public class AES {
     private SecretKey key;
     private byte[] IV;
+
+    public AES() {
+        try {
+            makeKey();
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(AES.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     /**
      * Makes a key on runtime

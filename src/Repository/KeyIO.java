@@ -21,9 +21,9 @@ import java.util.logging.Logger;
  */
 public class KeyIO {
     
-    public void serializePublic(PublicKey key){
+    public static void serializePublic(PublicKey key){
         try {
-         FileOutputStream fileOut = new FileOutputStream("/files/own/public.key");
+         FileOutputStream fileOut = new FileOutputStream("files/own/public.key");
          ObjectOutputStream out = new ObjectOutputStream(fileOut);
          out.writeObject(key);
          out.close();
@@ -33,9 +33,9 @@ public class KeyIO {
       }
     }
     
-    public void serializePrivate(PrivateKey key){
+    public static void serializePrivate(PrivateKey key){
         try {
-         FileOutputStream fileOut = new FileOutputStream("/files/own/private.key");
+         FileOutputStream fileOut = new FileOutputStream("files/own/private.key");
          ObjectOutputStream out = new ObjectOutputStream(fileOut);
          out.writeObject(key);
          out.close();
@@ -45,12 +45,12 @@ public class KeyIO {
       }
     }
     
-    public PublicKey loadPublic(){
+    public static PublicKey loadPublic(){
         
         PublicKey publicKey = null;
         
         try {
-         FileInputStream fileIn = new FileInputStream("/files/rPublic.key");
+         FileInputStream fileIn = new FileInputStream("files/public.key");
          ObjectInputStream in = new ObjectInputStream(fileIn);
          publicKey = (PublicKey) in.readObject();
          in.close();

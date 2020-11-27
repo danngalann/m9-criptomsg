@@ -20,7 +20,7 @@ import javax.crypto.Cipher;
  */
 public class RSA {
     
-    public Map<String, Object> makeKeys() throws Exception {
+    public static Map<String, Object> makeKeys() throws Exception {
         KeyPairGenerator keyPairGenerator =  KeyPairGenerator.getInstance("RSA");
         keyPairGenerator.initialize(2048);
         
@@ -35,13 +35,13 @@ public class RSA {
         return keys;
     }
     
-    public String decrypt(String eText, PublicKey publicKey) throws Exception {
+    public static String decrypt(String eText, PublicKey publicKey) throws Exception {
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.DECRYPT_MODE, publicKey);
         return new String(cipher.doFinal(Base64.getDecoder().decode(eText)));
     }
     
-    public String encrypt(String pText, PrivateKey privateKey) throws Exception {
+    public static String encrypt(String pText, PrivateKey privateKey) throws Exception {
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.ENCRYPT_MODE, privateKey);
         return Base64.getEncoder().encodeToString(cipher.doFinal(pText.getBytes()));
