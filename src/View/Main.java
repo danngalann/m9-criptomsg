@@ -27,27 +27,58 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jButtonSend = new javax.swing.JButton();
+        jButtonGet = new javax.swing.JButton();
+        jScrollPaneChat = new javax.swing.JScrollPane();
+        jTextAreaChat = new javax.swing.JTextArea();
+        jScrollPaneInput = new javax.swing.JScrollPane();
+        jTextAreaInput = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Enviar");
+        jButtonSend.setText("Enviar");
+
+        jButtonGet.setText("Recibir");
+
+        jTextAreaChat.setEditable(false);
+        jTextAreaChat.setColumns(20);
+        jTextAreaChat.setRows(5);
+        jTextAreaChat.setName("txtChat"); // NOI18N
+        jScrollPaneChat.setViewportView(jTextAreaChat);
+
+        jTextAreaInput.setColumns(20);
+        jTextAreaInput.setRows(5);
+        jTextAreaInput.setName("txtInput"); // NOI18N
+        jScrollPaneInput.setViewportView(jTextAreaInput);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(321, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPaneChat, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneInput))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonSend, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonGet, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(243, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(32, 32, 32))
+                .addContainerGap()
+                .addComponent(jScrollPaneChat, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonSend, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonGet, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPaneInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12))
         );
 
         pack();
@@ -89,6 +120,11 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    public javax.swing.JButton jButtonGet;
+    public javax.swing.JButton jButtonSend;
+    private javax.swing.JScrollPane jScrollPaneChat;
+    private javax.swing.JScrollPane jScrollPaneInput;
+    public javax.swing.JTextArea jTextAreaChat;
+    public javax.swing.JTextArea jTextAreaInput;
     // End of variables declaration//GEN-END:variables
 }
