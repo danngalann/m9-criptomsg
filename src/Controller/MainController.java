@@ -5,10 +5,20 @@
  */
 package Controller;
 
+import View.MainView;
+
 /**
  *
  * @author Daniel Galán
  */
 public class MainController {
+    
+    MainView p = null;
+
+    public MainController() {
+        p = new MainView();
+        p.setVisible(true);
+    }
+    
     
 }
