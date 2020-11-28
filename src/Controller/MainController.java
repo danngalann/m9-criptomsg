@@ -17,6 +17,7 @@ public class MainController {
 
     public MainController() {
         p = new MainView();
+        p.setDarkMode();
         p.setVisible(true);
     }
     
