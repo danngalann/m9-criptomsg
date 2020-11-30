@@ -9,6 +9,8 @@ import Socket.ChatClient;
 import View.MainView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import javax.swing.JFileChooser;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
@@ -29,6 +31,7 @@ public class MainController {
     }
     
     private void initListeners(){
+        // Socket connection
         p.connectBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -50,6 +53,36 @@ public class MainController {
                 } else {
                     chatClient.disconnect();
                     onDisconnect();
+                }
+            }
+        });
+        
+        // Send Message
+        p.sendBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String message = p.messageInput.getText();
+                
+                if(message.isEmpty()){
+                    showMessageDialog(p, "El mensaje no puede estar en blanco");
+                } else {
+                    // TODO: Send message to MessageManager
+                }
+            }
+        });
+        
+        // Load message
+        p.loadFileBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                
+                int returnValue = fileChooser.showOpenDialog(p);
+                
+                if(returnValue == JFileChooser.APPROVE_OPTION){
+                    File selectedFile = fileChooser.getSelectedFile();
+                    // TODO: Send file to MessageManager
+                    System.out.println(selectedFile.getAbsolutePath());
                 }
             }
         });
