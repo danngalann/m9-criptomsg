@@ -40,8 +40,8 @@ public class MainView extends javax.swing.JFrame {
         messageInput = new javax.swing.JTextArea();
         jScrollPaneChat1 = new javax.swing.JScrollPane();
         chatDisplay = new javax.swing.JTextArea();
+        connectBtn = new javax.swing.JButton();
         makeKeysBtn = new javax.swing.JButton();
-        makeKeysBtn1 = new javax.swing.JButton();
         ipInput = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,9 +66,9 @@ public class MainView extends javax.swing.JFrame {
         chatDisplay.setName("txtChat"); // NOI18N
         jScrollPaneChat1.setViewportView(chatDisplay);
 
-        makeKeysBtn.setText("Conectar");
+        connectBtn.setText("Conectar");
 
-        makeKeysBtn1.setText("Generar Claves");
+        makeKeysBtn.setText("Generar Claves");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,11 +80,11 @@ public class MainView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ipInput, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(makeKeysBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(connectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(loadFileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(makeKeysBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(makeKeysBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPaneInput, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -103,9 +103,9 @@ public class MainView extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ipInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(makeKeysBtn)
+                    .addComponent(connectBtn)
                     .addComponent(loadFileBtn)
-                    .addComponent(makeKeysBtn1))
+                    .addComponent(makeKeysBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 347, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(sendBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -157,12 +157,12 @@ public class MainView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextArea chatDisplay;
+    public javax.swing.JButton connectBtn;
     public javax.swing.JTextField ipInput;
     private javax.swing.JScrollPane jScrollPaneChat1;
     private javax.swing.JScrollPane jScrollPaneInput;
     public javax.swing.JButton loadFileBtn;
     public javax.swing.JButton makeKeysBtn;
-    public javax.swing.JButton makeKeysBtn1;
     public javax.swing.JTextArea messageInput;
     public javax.swing.JButton sendBtn;
     // End of variables declaration//GEN-END:variables

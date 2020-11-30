@@ -8,6 +8,8 @@ package Socket;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,28 +19,47 @@ public class ChatClient {
     private String hostname;
     private int port;
     private String userName;
+    private Socket socket;
+    private ReadThread readThread;
+    private WriteThread writeThread;
  
     public ChatClient(String hostname, int port) {
         this.hostname = hostname;
-        this.port = port;
+        this.port = port;        
     }
  
-    public void execute() {
+    public boolean execute() {
         try {
-            Socket socket = new Socket(hostname, port);
- 
+            
+            this.socket = new Socket(hostname, port);
+            
             System.out.println("Connected to the chat server");
- 
-            // I think this needs to be instantiated to access a "send" method calling writer.println
-            new ReadThread(socket, this).start();
-            new WriteThread(socket, this).start();
- 
+            
+            this.readThread = new ReadThread(socket, this);
+            this.writeThread = new WriteThread(socket, this);
+            
+            this.readThread.start();
+            this.writeThread.start();
+            
+            return true;
         } catch (UnknownHostException ex) {
             System.out.println("Server not found: " + ex.getMessage());
         } catch (IOException ex) {
             System.out.println("I/O Error: " + ex.getMessage());
         }
+        
+        return false;
  
+    }
+    
+    public void disconnect(){
+        try {
+            readThread.exit();
+            writeThread.exit();
+            socket.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ChatClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
  
     void setUserName(String userName) {

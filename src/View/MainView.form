@@ -34,11 +34,11 @@
                   <Group type="102" attributes="0">
                       <Component id="ipInput" min="-2" pref="188" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="makeKeysBtn" min="-2" pref="93" max="-2" attributes="0"/>
+                      <Component id="connectBtn" min="-2" pref="93" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="loadFileBtn" min="-2" pref="128" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="makeKeysBtn1" min="-2" pref="128" max="-2" attributes="0"/>
+                      <Component id="makeKeysBtn" min="-2" pref="128" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -64,9 +64,9 @@
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="ipInput" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="makeKeysBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="connectBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="loadFileBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="makeKeysBtn1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="makeKeysBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="347" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -143,7 +143,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="makeKeysBtn">
+    <Component class="javax.swing.JButton" name="connectBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Conectar"/>
       </Properties>
@@ -151,7 +151,7 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="makeKeysBtn1">
+    <Component class="javax.swing.JButton" name="makeKeysBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Generar Claves"/>
       </Properties>
