@@ -5,11 +5,18 @@
  */
 package Controller;
 
+import Repository.KeyIO;
+import Repository.RSA;
 import Socket.ChatClient;
 import View.MainView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -83,6 +90,22 @@ public class MainController {
                     File selectedFile = fileChooser.getSelectedFile();
                     // TODO: Send file to MessageManager
                     System.out.println(selectedFile.getAbsolutePath());
+                }
+            }
+        });
+        
+        // Make keys
+        p.makeKeysBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Map<String, Object> keys = RSA.makeKeys();
+                    KeyIO.serializePrivate((PrivateKey) keys.get("private"));
+                    KeyIO.serializePublic((PublicKey) keys.get("public"));
+                    showMessageDialog(p, "Claves generadas");
+                } catch (Exception ex) {
+                    Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                    showMessageDialog(p, "No se han podido generar las claves.");
                 }
             }
         });
