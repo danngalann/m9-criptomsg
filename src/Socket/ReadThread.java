@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.net.SocketException;
 
 /**
  *
@@ -20,10 +21,12 @@ public class ReadThread extends Thread {
     private BufferedReader reader;
     private Socket socket;
     private ChatClient client;
+    private boolean exit;
  
     public ReadThread(Socket socket, ChatClient client) {
         this.socket = socket;
         this.client = client;
+        this.exit = false;
  
         try {
             InputStream input = socket.getInputStream();
@@ -36,7 +39,7 @@ public class ReadThread extends Thread {
  
     @Override
     public void run() {
-        while (true) {
+        while (!exit) {
             try {
                 // TODO: change this to a call to the controller to display the message.
                 String response = reader.readLine();
@@ -52,6 +55,10 @@ public class ReadThread extends Thread {
                 break;
             }
         }
+    }
+    
+    public void exit(){
+        exit = true;
     }
     
 }

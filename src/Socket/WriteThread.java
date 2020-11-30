@@ -21,10 +21,12 @@ public class WriteThread extends Thread {
     private PrintWriter writer;
     private Socket socket;
     private ChatClient client;
+    private boolean exit;
  
     public WriteThread(Socket socket, ChatClient client) {
         this.socket = socket;
         this.client = client;
+        this.exit = false;
  
         try {
             OutputStream output = socket.getOutputStream();
@@ -48,7 +50,7 @@ public class WriteThread extends Thread {
             text = "hello motherfucker"; // TODO: Get this from GUI
             writer.println(text);
  
-        } while (!text.equals("bye"));
+        } while (!text.equals("bye") && !exit);
  
         try {
             socket.close();
@@ -56,5 +58,9 @@ public class WriteThread extends Thread {
  
             System.out.println("Error writing to server: " + ex.getMessage());
         }
+    }
+    
+    public void exit(){
+        exit = true;
     }
 }

@@ -36,16 +36,15 @@ public class MainView extends javax.swing.JFrame {
 
         sendBtn = new javax.swing.JButton();
         loadFileBtn = new javax.swing.JButton();
-        jScrollPaneChat = new javax.swing.JScrollPane();
-        users = new javax.swing.JTextArea();
         jScrollPaneInput = new javax.swing.JScrollPane();
         messageInput = new javax.swing.JTextArea();
         jScrollPaneChat1 = new javax.swing.JScrollPane();
         chatDisplay = new javax.swing.JTextArea();
-        jScrollPaneInput1 = new javax.swing.JScrollPane();
-        ipInput = new javax.swing.JTextArea();
+        connectBtn = new javax.swing.JButton();
+        exportPKBtn = new javax.swing.JButton();
+        ipInput = new javax.swing.JTextField();
         makeKeysBtn = new javax.swing.JButton();
-        makeKeysBtn1 = new javax.swing.JButton();
+        importPKBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CryptoMsg");
@@ -55,12 +54,6 @@ public class MainView extends javax.swing.JFrame {
         sendBtn.setText("Enviar");
 
         loadFileBtn.setText("Cargar archivo");
-
-        users.setEditable(false);
-        users.setColumns(20);
-        users.setRows(5);
-        users.setName("txtChat"); // NOI18N
-        jScrollPaneChat.setViewportView(users);
 
         messageInput.setColumns(20);
         messageInput.setLineWrap(true);
@@ -75,60 +68,60 @@ public class MainView extends javax.swing.JFrame {
         chatDisplay.setName("txtChat"); // NOI18N
         jScrollPaneChat1.setViewportView(chatDisplay);
 
-        ipInput.setColumns(20);
-        ipInput.setRows(5);
-        ipInput.setName("txtInput"); // NOI18N
-        jScrollPaneInput1.setViewportView(ipInput);
+        connectBtn.setText("Conectar");
 
-        makeKeysBtn.setText("Conectar");
+        exportPKBtn.setText("Exportar PK");
 
-        makeKeysBtn1.setText("Generar Claves");
+        makeKeysBtn.setText("Generar Claves");
+
+        importPKBtn.setText("Importar PK");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(jScrollPaneInput, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPaneInput1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPaneChat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPaneInput, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(makeKeysBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(sendBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(sendBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ipInput, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(connectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(loadFileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(makeKeysBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(makeKeysBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(importPKBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(exportPKBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(43, 43, 43)
-                    .addComponent(jScrollPaneChat1, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(409, Short.MAX_VALUE)))
+                    .addGap(35, 35, 35)
+                    .addComponent(jScrollPaneChat1, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(29, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(58, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ipInput, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(connectBtn)
+                    .addComponent(loadFileBtn)
+                    .addComponent(exportPKBtn)
                     .addComponent(makeKeysBtn)
-                    .addComponent(jScrollPaneInput1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneChat, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(sendBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(importPKBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 349, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPaneInput)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(makeKeysBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(loadFileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(38, 38, 38))
+                    .addComponent(sendBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(39, 39, 39))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(63, 63, 63)
@@ -153,38 +146,31 @@ public class MainView extends javax.swing.JFrame {
     }
     
     public void setDarkMode(){
-        try {
-            BasicLookAndFeel darcula = new DarculaLaf();
-            UIManager.setLookAndFeel(darcula);
+        try {            
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if("Metal".equals(info.getName())) {
+                if("CDE/Motif".equals(info.getName())) {
                     UIManager.setLookAndFeel(info.getClassName());
                 }                    
                 System.out.println(info.getName() + ", " + info.getClassName());
             }
-        } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+//            BasicLookAndFeel darcula = new DarculaLaf();
+//            UIManager.setLookAndFeel(darcula);
+        } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextArea chatDisplay;
-    public javax.swing.JTextArea ipInput;
-    private javax.swing.JScrollPane jScrollPaneChat;
+    public javax.swing.JButton connectBtn;
+    public javax.swing.JButton exportPKBtn;
+    public javax.swing.JButton importPKBtn;
+    public javax.swing.JTextField ipInput;
     private javax.swing.JScrollPane jScrollPaneChat1;
     private javax.swing.JScrollPane jScrollPaneInput;
-    private javax.swing.JScrollPane jScrollPaneInput1;
     public javax.swing.JButton loadFileBtn;
     public javax.swing.JButton makeKeysBtn;
-    public javax.swing.JButton makeKeysBtn1;
     public javax.swing.JTextArea messageInput;
     public javax.swing.JButton sendBtn;
-    public javax.swing.JTextArea users;
     // End of variables declaration//GEN-END:variables
 }
