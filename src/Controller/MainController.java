@@ -36,6 +36,9 @@ public class MainController {
     FileFilter binaryFilter;
     FileFilter keyFilter;
 
+    /**
+     * Main Controllers constructor
+     */
     public MainController() {
         initFilters();
         
@@ -45,6 +48,9 @@ public class MainController {
         p.setVisible(true);
     }
     
+    /**
+     * Initializes file filters
+     */
     private void initFilters(){
         binaryFilter = new FileFilter() {
             
@@ -73,127 +79,118 @@ public class MainController {
         };
     }
     
+    /**
+     * Initializes view event listeners
+     */
     private void initListeners(){
         // Socket connection
-        p.connectBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(!connected){
-                    String ip = p.ipInput.getText();
-
-                    if(!ip.isEmpty()){
-                        chatClient = new ChatClient(ip, 3000);
-                        connected = chatClient.execute();
-
-                        if(connected){
-                            onConnect();
-                        } else {
-                            showMessageDialog(p, "No se ha podido conectar");
-                        }
+        p.connectBtn.addActionListener((ActionEvent e) -> {
+            if(!connected){
+                String ip = p.ipInput.getText();
+                
+                if(!ip.isEmpty()){
+                    chatClient = new ChatClient(ip, 3000);
+                    connected = chatClient.execute();
+                    
+                    if(connected){
+                        onConnect();
                     } else {
-                        showMessageDialog(p, "La IP no puede estar en blanco.");
+                        showMessageDialog(p, "No se ha podido conectar");
                     }
                 } else {
-                    chatClient.disconnect();
-                    onDisconnect();
+                    showMessageDialog(p, "La IP no puede estar en blanco.");
                 }
+            } else {
+                chatClient.disconnect();
+                onDisconnect();
             }
         });
         
         // Send Message
-        p.sendBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String message = p.messageInput.getText();
-                
-                if(message.isEmpty()){
-                    showMessageDialog(p, "El mensaje no puede estar en blanco");
-                } else {
-                    // TODO: Send message to MessageManager
-                }
+        p.sendBtn.addActionListener((ActionEvent e) -> {
+            String message = p.messageInput.getText();
+            
+            if(message.isEmpty()){
+                showMessageDialog(p, "El mensaje no puede estar en blanco");
+            } else {
+                // TODO: Send message to MessageManager
             }
         });
         
         // Load message
-        p.loadFileBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-                
-                fileChooser.setDialogTitle("Carga un mensaje de un compañero");
-                fileChooser.setFileFilter(binaryFilter);
-                
-                int returnValue = fileChooser.showOpenDialog(p);
-                
-                if(returnValue == JFileChooser.APPROVE_OPTION){
-                    File selectedFile = fileChooser.getSelectedFile();
-                    // TODO: Send file to MessageManager
-                    System.out.println(selectedFile.getAbsolutePath());
-                }
+        p.loadFileBtn.addActionListener((ActionEvent e) -> {
+            JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+            
+            fileChooser.setDialogTitle("Carga un mensaje de un compañero");
+            fileChooser.setFileFilter(binaryFilter);
+            
+            int returnValue = fileChooser.showOpenDialog(p);
+            
+            if(returnValue == JFileChooser.APPROVE_OPTION){
+                File selectedFile = fileChooser.getSelectedFile();
+                // TODO: Send file to MessageManager
+                System.out.println(selectedFile.getAbsolutePath());
             }
         });
         
         // Make keys
-        p.makeKeysBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    keys = RSA.makeKeys(); // Private keys will be stored on volatile memory, not on disk
-                    showMessageDialog(p, "Claves generadas");
-                    p.exportPKBtn.setEnabled(true);
-                    p.importPKBtn.setEnabled(true);
-                } catch (Exception ex) {
-                    Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-                    showMessageDialog(p, "No se han podido generar las claves.");
-                }
+        p.makeKeysBtn.addActionListener((ActionEvent e) -> {
+            try {
+                keys = RSA.makeKeys(); // Private keys will be stored on volatile memory, not on disk
+                showMessageDialog(p, "Claves generadas");
+                p.exportPKBtn.setEnabled(true);
+                p.importPKBtn.setEnabled(true);
+            } catch (Exception ex) {
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                showMessageDialog(p, "No se han podido generar las claves.");
             }
         });
         
         // Export public key
-        p.exportPKBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-                
-                fileChooser.setDialogTitle("Exporta tu clave pública");
-                fileChooser.setFileFilter(keyFilter);
-                
-                int returnValue = fileChooser.showSaveDialog(p);
-                
-                if(returnValue == JFileChooser.APPROVE_OPTION){
-                    File selectedFile = fileChooser.getSelectedFile();
-                    KeyIO.serializePublic((PublicKey) keys.get("public"), selectedFile.getAbsolutePath());
-                    showMessageDialog(p, "Clave exportada");
-                }
+        p.exportPKBtn.addActionListener((ActionEvent e) -> {
+            JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+            
+            fileChooser.setDialogTitle("Exporta tu clave pública");
+            fileChooser.setFileFilter(keyFilter);
+            
+            int returnValue = fileChooser.showSaveDialog(p);
+            
+            if(returnValue == JFileChooser.APPROVE_OPTION){
+                File selectedFile = fileChooser.getSelectedFile();
+                KeyIO.serializePublic((PublicKey) keys.get("public"), selectedFile.getAbsolutePath());
+                showMessageDialog(p, "Clave exportada");
             }
         });
         
         // Import remote public key
-        p.importPKBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-                
-                fileChooser.setDialogTitle("Importa la clave publica de tu compañero");
-                fileChooser.setFileFilter(keyFilter);
-                
-                int returnValue = fileChooser.showOpenDialog(p);
-                
-                if(returnValue == JFileChooser.APPROVE_OPTION){
-                    File selectedFile = fileChooser.getSelectedFile();
-                    remotePublicKey = KeyIO.loadPublic(selectedFile.getAbsolutePath());
-                    System.out.println(remotePublicKey.getAlgorithm());
-                    showMessageDialog(p, "Clave importada");
-                }
+        p.importPKBtn.addActionListener((ActionEvent e) -> {
+            JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+            
+            fileChooser.setDialogTitle("Importa la clave publica de tu compañero");
+            fileChooser.setFileFilter(keyFilter);
+            
+            int returnValue = fileChooser.showOpenDialog(p);
+            
+            if(returnValue == JFileChooser.APPROVE_OPTION){
+                File selectedFile = fileChooser.getSelectedFile();
+                remotePublicKey = KeyIO.loadPublic(selectedFile.getAbsolutePath());
+                System.out.println(remotePublicKey.getAlgorithm());
+                showMessageDialog(p, "Clave importada");
             }
         });
     }
     
+    /**
+     * Disables IP input
+     */
     private void onConnect(){
         p.ipInput.setEnabled(false);
         p.connectBtn.setText("Desconectar");
     }
     
+    /**
+     * Enables IP input
+     */
     private void onDisconnect(){
         p.ipInput.setEnabled(true);
         p.connectBtn.setText("Conectar");

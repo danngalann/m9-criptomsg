@@ -21,6 +21,11 @@ import java.util.logging.Logger;
  */
 public class KeyIO {
     
+    /**     * 
+     * Serializes a public key on a predefined route.
+     * @deprecated Public and private keys are now stored on memory.
+     * @param key 
+     */
     public static void serializePublic(PublicKey key){
         try {
          FileOutputStream fileOut = new FileOutputStream("files/own/public.key");
@@ -33,6 +38,11 @@ public class KeyIO {
       }
     }
     
+    /**
+     * Serializes a public key on a given route.
+     * @param key
+     * @param path 
+     */
     public static void serializePublic(PublicKey key, String path){
         try {
          FileOutputStream fileOut = new FileOutputStream(path);
@@ -45,6 +55,11 @@ public class KeyIO {
       }
     }
     
+    /**
+     * Serializes a private key on a predefined route.
+     * @deprecated Public and private keys are now stored on memory.
+     * @param key 
+     */
     public static void serializePrivate(PrivateKey key){
         try {
          FileOutputStream fileOut = new FileOutputStream("files/own/private.key");
@@ -57,6 +72,11 @@ public class KeyIO {
       }
     }
     
+    /**
+     * Loads a public key from a predefined route.
+     * @deprecated public keys should be imported with loadPublic(String path) from GUI.
+     * @return 
+     */
     public static PublicKey loadPublic(){
         
         PublicKey publicKey = null;
@@ -74,6 +94,11 @@ public class KeyIO {
         return publicKey;
     }
     
+    /**
+     * Loads a public key from a given route.
+     * @param path
+     * @return 
+     */
     public static PublicKey loadPublic(String path){
         PublicKey publicKey = null;
         

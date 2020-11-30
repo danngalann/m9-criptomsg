@@ -13,6 +13,11 @@ import java.security.NoSuchAlgorithmException;
  */
 public class SHA {
     
+    /**
+     * Makes a hash for a given text
+     * @param text
+     * @return 
+     */
     public static String makeHash(String text){
         MessageDigest md = null;
         String hash = "";
