@@ -140,6 +140,8 @@ public class MainController {
                 try {
                     keys = RSA.makeKeys(); // Private keys will be stored on volatile memory, not on disk
                     showMessageDialog(p, "Claves generadas");
+                    p.exportPKBtn.setEnabled(true);
+                    p.importPKBtn.setEnabled(true);
                 } catch (Exception ex) {
                     Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                     showMessageDialog(p, "No se han podido generar las claves.");

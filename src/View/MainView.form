@@ -159,6 +159,7 @@
     <Component class="javax.swing.JButton" name="exportPKBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Exportar PK"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -180,6 +181,7 @@
     <Component class="javax.swing.JButton" name="importPKBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Importar PK"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

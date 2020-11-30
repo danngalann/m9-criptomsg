@@ -71,10 +71,12 @@ public class MainView extends javax.swing.JFrame {
         connectBtn.setText("Conectar");
 
         exportPKBtn.setText("Exportar PK");
+        exportPKBtn.setEnabled(false);
 
         makeKeysBtn.setText("Generar Claves");
 
         importPKBtn.setText("Importar PK");
+        importPKBtn.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
