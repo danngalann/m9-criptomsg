@@ -145,10 +145,10 @@ public class MainView extends javax.swing.JFrame {
         });
     }
     
-    public void setDarkMode(){
+    public void setTheme(){
         try {            
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if("CDE/Motif".equals(info.getName())) {
+                if("Nimbus".equals(info.getName())) {
                     UIManager.setLookAndFeel(info.getClassName());
                 }                    
                 System.out.println(info.getName() + ", " + info.getClassName());

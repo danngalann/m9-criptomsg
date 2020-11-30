@@ -33,6 +33,18 @@ public class KeyIO {
       }
     }
     
+    public static void serializePublic(PublicKey key, String path){
+        try {
+         FileOutputStream fileOut = new FileOutputStream(path);
+         ObjectOutputStream out = new ObjectOutputStream(fileOut);
+         out.writeObject(key);
+         out.close();
+         fileOut.close();
+      } catch (IOException i) {
+         i.printStackTrace();
+      }
+    }
+    
     public static void serializePrivate(PrivateKey key){
         try {
          FileOutputStream fileOut = new FileOutputStream("files/own/private.key");
@@ -51,6 +63,22 @@ public class KeyIO {
         
         try {
          FileInputStream fileIn = new FileInputStream("files/public.key");
+         ObjectInputStream in = new ObjectInputStream(fileIn);
+         publicKey = (PublicKey) in.readObject();
+         in.close();
+         fileIn.close();
+        } catch (ClassNotFoundException | IOException ex) {
+            Logger.getLogger(KeyIO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return publicKey;
+    }
+    
+    public static PublicKey loadPublic(String path){
+        PublicKey publicKey = null;
+        
+        try {
+         FileInputStream fileIn = new FileInputStream(path);
          ObjectInputStream in = new ObjectInputStream(fileIn);
          publicKey = (PublicKey) in.readObject();
          in.close();

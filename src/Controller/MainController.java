@@ -19,6 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.filechooser.FileSystemView;
+import javax.swing.filechooser.FileFilter;
 
 /**
  *
@@ -29,12 +31,46 @@ public class MainController {
     MainView p;
     boolean connected = false;
     ChatClient chatClient;
+    Map<String, Object> keys;
+    PublicKey remotePublicKey;
+    FileFilter binaryFilter;
+    FileFilter keyFilter;
 
     public MainController() {
+        initFilters();
+        
         p = new MainView();
         initListeners();
-        p.setDarkMode();
+        p.setTheme();
         p.setVisible(true);
+    }
+    
+    private void initFilters(){
+        binaryFilter = new FileFilter() {
+            
+            @Override
+            public String getDescription() {
+                return "Binary Files (*.bin)";
+            }
+            
+            @Override
+            public boolean accept(File f) {
+                return f.getName().toLowerCase().endsWith(".bin");
+            }
+        };
+        
+        keyFilter = new FileFilter() {
+            
+            @Override
+            public String getDescription() {
+                return "Key Files (*.key)";
+            }
+            
+            @Override
+            public boolean accept(File f) {
+                return f.getName().toLowerCase().endsWith(".key");
+            }
+        };
     }
     
     private void initListeners(){
@@ -82,7 +118,10 @@ public class MainController {
         p.loadFileBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFileChooser fileChooser = new JFileChooser();
+                JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+                
+                fileChooser.setDialogTitle("Carga un mensaje de un compañero");
+                fileChooser.setFileFilter(binaryFilter);
                 
                 int returnValue = fileChooser.showOpenDialog(p);
                 
@@ -99,13 +138,50 @@ public class MainController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Map<String, Object> keys = RSA.makeKeys();
-                    KeyIO.serializePrivate((PrivateKey) keys.get("private"));
-                    KeyIO.serializePublic((PublicKey) keys.get("public"));
+                    keys = RSA.makeKeys(); // Private keys will be stored on volatile memory, not on disk
                     showMessageDialog(p, "Claves generadas");
                 } catch (Exception ex) {
                     Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                     showMessageDialog(p, "No se han podido generar las claves.");
+                }
+            }
+        });
+        
+        // Export public key
+        p.exportPKBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+                
+                fileChooser.setDialogTitle("Exporta tu clave pública");
+                fileChooser.setFileFilter(keyFilter);
+                
+                int returnValue = fileChooser.showSaveDialog(p);
+                
+                if(returnValue == JFileChooser.APPROVE_OPTION){
+                    File selectedFile = fileChooser.getSelectedFile();
+                    KeyIO.serializePublic((PublicKey) keys.get("public"), selectedFile.getAbsolutePath());
+                    showMessageDialog(p, "Clave exportada");
+                }
+            }
+        });
+        
+        // Import remote public key
+        p.importPKBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+                
+                fileChooser.setDialogTitle("Importa la clave publica de tu compañero");
+                fileChooser.setFileFilter(keyFilter);
+                
+                int returnValue = fileChooser.showOpenDialog(p);
+                
+                if(returnValue == JFileChooser.APPROVE_OPTION){
+                    File selectedFile = fileChooser.getSelectedFile();
+                    remotePublicKey = KeyIO.loadPublic(selectedFile.getAbsolutePath());
+                    System.out.println(remotePublicKey.getAlgorithm());
+                    showMessageDialog(p, "Clave importada");
                 }
             }
         });
