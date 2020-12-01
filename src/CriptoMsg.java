@@ -2,6 +2,7 @@
 import Controller.MainController;
 import Repository.AES;
 import Repository.KeyIO;
+import Repository.MessageManager;
 import Repository.RSA;
 import Repository.SHA;
 import Socket.ChatClient;

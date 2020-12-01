@@ -60,10 +60,16 @@ public class RSA {
      * @return
      * @throws Exception 
      */
-    public static String encrypt(String pText, PrivateKey privateKey) throws Exception {
+    public static byte[] encrypt(byte[] pText, PrivateKey privateKey) throws Exception {
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.ENCRYPT_MODE, privateKey);
-        return Base64.getEncoder().encodeToString(cipher.doFinal(pText.getBytes()));
+        return cipher.doFinal(pText);
+    }
+    
+    public static byte[] encrypt(byte[] pText, PublicKey publicKey) throws Exception {
+        Cipher cipher = Cipher.getInstance("RSA");
+        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+        return cipher.doFinal(pText);
     }
     
 }
