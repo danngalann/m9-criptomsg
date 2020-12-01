@@ -32,9 +32,12 @@
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jScrollPaneInput" min="-2" pref="710" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="sendBtn" max="32767" attributes="0"/>
+                      <Component id="jScrollPaneInput" min="-2" pref="628" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="sendBtn" min="-2" pref="71" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="exportMsgBtn" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="ipInput" min="-2" pref="188" max="-2" attributes="0"/>
@@ -56,7 +59,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="jScrollPaneChat1" min="-2" pref="798" max="-2" attributes="0"/>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -76,7 +79,8 @@
               <EmptySpace pref="349" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jScrollPaneInput" max="32767" attributes="0"/>
-                  <Component id="sendBtn" max="32767" attributes="0"/>
+                  <Component id="sendBtn" alignment="0" max="32767" attributes="0"/>
+                  <Component id="exportMsgBtn" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
           </Group>
@@ -101,7 +105,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="loadFileBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cargar archivo"/>
+        <Property name="text" type="java.lang.String" value="Cargar mensaje"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -182,6 +186,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Importar PK"/>
         <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="exportMsgBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Exportar"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

@@ -33,8 +33,8 @@ public class MainController {
     ChatClient chatClient;
     Map<String, Object> rsaKeys;
     PublicKey remotePublicKey;
-    FileFilter binaryFilter;
     FileFilter keyFilter;
+    FileFilter messageFilter;
 
     /**
      * Main Controllers constructor
@@ -51,20 +51,8 @@ public class MainController {
     /**
      * Initializes file filters
      */
-    private void initFilters(){
-        binaryFilter = new FileFilter() {
-            
-            @Override
-            public String getDescription() {
-                return "Binary Files (*.bin)";
-            }
-            
-            @Override
-            public boolean accept(File f) {
-                return f.getName().toLowerCase().endsWith(".bin");
-            }
-        };
-        
+    private void initFilters(){        
+        // Key
         keyFilter = new FileFilter() {
             
             @Override
@@ -75,6 +63,20 @@ public class MainController {
             @Override
             public boolean accept(File f) {
                 return f.getName().toLowerCase().endsWith(".key");
+            }
+        };
+        
+        // Key
+        messageFilter = new FileFilter() {
+            
+            @Override
+            public String getDescription() {
+                return "Message Files (*.msg)";
+            }
+            
+            @Override
+            public boolean accept(File f) {
+                return f.getName().toLowerCase().endsWith(".msg");
             }
         };
     }
@@ -122,13 +124,28 @@ public class MainController {
             JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
             
             fileChooser.setDialogTitle("Carga un mensaje de un compañero");
-            fileChooser.setFileFilter(binaryFilter);
+            fileChooser.setFileFilter(messageFilter);
             
             int returnValue = fileChooser.showOpenDialog(p);
             
             if(returnValue == JFileChooser.APPROVE_OPTION){
                 File selectedFile = fileChooser.getSelectedFile();
                 // TODO: Send file to MessageManager
+                System.out.println(selectedFile.getAbsolutePath());
+            }
+        });
+        
+        // Export message
+        p.exportMsgBtn.addActionListener((ActionEvent e) -> {
+            JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+            
+            fileChooser.setDialogTitle("Exporta el último mensaje");
+            fileChooser.setFileFilter(messageFilter);
+            
+            int returnValue = fileChooser.showOpenDialog(p);
+            
+            if(returnValue == JFileChooser.APPROVE_OPTION){
+                File selectedFile = fileChooser.getSelectedFile();
                 System.out.println(selectedFile.getAbsolutePath());
             }
         });
