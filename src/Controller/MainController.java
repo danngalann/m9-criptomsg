@@ -31,7 +31,7 @@ public class MainController {
     MainView p;
     boolean connected = false;
     ChatClient chatClient;
-    Map<String, Object> keys;
+    Map<String, Object> rsaKeys;
     PublicKey remotePublicKey;
     FileFilter binaryFilter;
     FileFilter keyFilter;
@@ -136,7 +136,7 @@ public class MainController {
         // Make keys
         p.makeKeysBtn.addActionListener((ActionEvent e) -> {
             try {
-                keys = RSA.makeKeys(); // Private keys will be stored on volatile memory, not on disk
+                rsaKeys = RSA.makeKeys(); // Private keys will be stored on volatile memory, not on disk
                 showMessageDialog(p, "Claves generadas");
                 p.exportPKBtn.setEnabled(true);
                 p.importPKBtn.setEnabled(true);
@@ -157,7 +157,7 @@ public class MainController {
             
             if(returnValue == JFileChooser.APPROVE_OPTION){
                 File selectedFile = fileChooser.getSelectedFile();
-                KeyIO.serializePublic((PublicKey) keys.get("public"), selectedFile.getAbsolutePath());
+                KeyIO.serializePublic((PublicKey) rsaKeys.get("public"), selectedFile.getAbsolutePath());
                 showMessageDialog(p, "Clave exportada");
             }
         });

@@ -45,10 +45,12 @@ public class AES {
         
         // Make IV
         IV = new byte[16];
-        SecureRandom rnd = new SecureRandom();
-        rnd.nextBytes(IV);
     }
     
+    public SecretKey getKey(){
+        return key;
+    }
+
     /**
      * Encrypts text
      * @param text byte array
