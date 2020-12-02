@@ -41,20 +41,36 @@ public class RSA {
     }
     
     /**
-     * Decrypts a given message
+     * Decrypts the given bytes
+     * Will be used to decrypt hash
      * @param eText
      * @param publicKey
      * @return
      * @throws Exception 
      */
-    public static String decrypt(String eText, PublicKey publicKey) throws Exception {
+    public static String decrypt(byte[] eText, PublicKey publicKey) throws Exception {
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.DECRYPT_MODE, publicKey);
-        return new String(cipher.doFinal(Base64.getDecoder().decode(eText)));
+        return new String(cipher.doFinal(eText));
     }
     
     /**
-     * Encrypts a given message
+     * Decrypts the given bytes
+     * Will be used to decrypt AES key
+     * @param eText
+     * @param privateKey
+     * @return
+     * @throws Exception 
+     */
+    public static byte[] decrypt(byte[] eText, PrivateKey privateKey) throws Exception {
+        Cipher cipher = Cipher.getInstance("RSA");
+        cipher.init(Cipher.DECRYPT_MODE, privateKey);
+        return cipher.doFinal(eText);
+    }
+    
+    /**
+     * Encrypts the given bytes
+     * Will be used to encrypt hash
      * @param pText
      * @param privateKey
      * @return
@@ -66,6 +82,14 @@ public class RSA {
         return cipher.doFinal(pText);
     }
     
+    /**
+     * Encrypts the given bytes
+     * Will be used to encrypt AES key
+     * @param pText
+     * @param publicKey
+     * @return
+     * @throws Exception 
+     */
     public static byte[] encrypt(byte[] pText, PublicKey publicKey) throws Exception {
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);

@@ -82,18 +82,15 @@ public class AES {
      * @return
      * @throws Exception 
      */
-    public String decrypt(byte[] encryptedText) throws Exception {
+    public static String decrypt(byte[] encryptedText, SecretKey simetricKey) throws Exception {
         // Get cipher
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         
-        // Make SecretKeySpec
-        SecretKeySpec keySpec = new SecretKeySpec(key.getEncoded(), "AES");
-        
         // Make IVParameterSpec
-        IvParameterSpec ivSpec = new IvParameterSpec(IV);
+        IvParameterSpec ivSpec = new IvParameterSpec(new byte[16]);
         
         // Init cipher
-        cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
+        cipher.init(Cipher.DECRYPT_MODE, simetricKey, ivSpec);
         
         // Encrypt
         byte[] text = cipher.doFinal(encryptedText);

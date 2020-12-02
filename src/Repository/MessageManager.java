@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  *
@@ -49,5 +50,35 @@ public class MessageManager {
         }
         
         return finalMessage;
+    }
+    
+    public static String receiveMessage(Map<String, Object> encryptedData, PublicKey remotePublicKey, PrivateKey privateKey){
+        
+        String plainMessage = "";
+        // Extract everything
+        byte[] encryptedHash = (byte[]) encryptedData.get("hash");
+        byte[] encriptedSimetricKey = (byte[]) encryptedData.get("key");
+        byte[] encryptedMessage = (byte[]) encryptedData.get("message");
+        
+        try {
+            // Decrypt hash with remote public key
+            String hash = RSA.decrypt(encryptedHash, remotePublicKey);
+            
+            // Decrypt simetric key with private key
+            byte[] encodedSimetricKey = RSA.decrypt(encriptedSimetricKey, privateKey);
+            
+            // Make AES key from raw bytes
+            SecretKey simetricKey = new SecretKeySpec(encodedSimetricKey, 0, encodedSimetricKey.length, "AES");
+            
+            // Decrypt message with AES key
+            String message = AES.decrypt(encryptedMessage, simetricKey);
+            
+            // Store decrypted message on return variable
+            plainMessage = message;
+        } catch (Exception ex) {
+            Logger.getLogger(MessageManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return plainMessage;
     }
 }

@@ -134,9 +134,15 @@ public class MainController {
             int returnValue = fileChooser.showOpenDialog(p);
             
             if(returnValue == JFileChooser.APPROVE_OPTION){
+                // Load message file
                 File selectedFile = fileChooser.getSelectedFile();
-                // TODO: Send file to MessageManager
-                System.out.println(selectedFile.getAbsolutePath());
+                Map<String, Object> messageData = FileManager.readMessage(selectedFile.getAbsolutePath());
+                
+                // Decrypt message
+                String plainMessage = MessageManager.receiveMessage(messageData, remotePublicKey, (PrivateKey) rsaKeys.get("private"));
+                
+                // Print message to chat display
+                p.chatDisplay.setText(plainMessage);
             }
         });
         
