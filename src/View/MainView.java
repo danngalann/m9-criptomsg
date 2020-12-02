@@ -35,7 +35,7 @@ public class MainView extends javax.swing.JFrame {
     private void initComponents() {
 
         sendBtn = new javax.swing.JButton();
-        loadFileBtn = new javax.swing.JButton();
+        loadMessageBtn = new javax.swing.JButton();
         jScrollPaneInput = new javax.swing.JScrollPane();
         messageInput = new javax.swing.JTextArea();
         jScrollPaneChat1 = new javax.swing.JScrollPane();
@@ -53,9 +53,12 @@ public class MainView extends javax.swing.JFrame {
         setResizable(false);
 
         sendBtn.setText("Enviar");
+        sendBtn.setToolTipText("Necesario importar clave pública ");
         sendBtn.setEnabled(false);
 
-        loadFileBtn.setText("Cargar mensaje");
+        loadMessageBtn.setText("Cargar mensaje");
+        loadMessageBtn.setToolTipText("Necesario importar clave pública ");
+        loadMessageBtn.setEnabled(false);
 
         messageInput.setColumns(20);
         messageInput.setLineWrap(true);
@@ -73,14 +76,17 @@ public class MainView extends javax.swing.JFrame {
         connectBtn.setText("Conectar");
 
         exportPKBtn.setText("Exportar PK");
+        exportPKBtn.setToolTipText("Necesario generar claves");
         exportPKBtn.setEnabled(false);
 
         makeKeysBtn.setText("Generar Claves");
 
         importPKBtn.setText("Importar PK");
+        importPKBtn.setToolTipText("Necesario generar claves");
         importPKBtn.setEnabled(false);
 
         exportMsgBtn.setText("Exportar");
+        exportMsgBtn.setToolTipText("Necesario importar clave pública ");
         exportMsgBtn.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -91,25 +97,25 @@ public class MainView extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPaneInput, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPaneInput, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sendBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sendBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(exportMsgBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18))
+                        .addGap(46, 46, 46))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ipInput, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(connectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(loadFileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(loadMessageBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(makeKeysBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(importPKBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(exportPKBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(exportPKBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(35, 35, 35)
@@ -121,9 +127,9 @@ public class MainView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ipInput, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ipInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(connectBtn)
-                    .addComponent(loadFileBtn)
+                    .addComponent(loadMessageBtn)
                     .addComponent(exportPKBtn)
                     .addComponent(makeKeysBtn)
                     .addComponent(importPKBtn))
@@ -180,7 +186,7 @@ public class MainView extends javax.swing.JFrame {
     public javax.swing.JTextField ipInput;
     private javax.swing.JScrollPane jScrollPaneChat1;
     private javax.swing.JScrollPane jScrollPaneInput;
-    public javax.swing.JButton loadFileBtn;
+    public javax.swing.JButton loadMessageBtn;
     public javax.swing.JButton makeKeysBtn;
     public javax.swing.JTextArea messageInput;
     public javax.swing.JButton sendBtn;

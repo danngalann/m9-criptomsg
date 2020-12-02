@@ -125,7 +125,7 @@ public class MainController {
         });
         
         // Load message
-        p.loadFileBtn.addActionListener((ActionEvent e) -> {
+        p.loadMessageBtn.addActionListener((ActionEvent e) -> {
             JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
             
             fileChooser.setDialogTitle("Carga un mensaje de un compañero");
@@ -160,8 +160,14 @@ public class MainController {
             try {
                 rsaKeys = RSA.makeKeys(); // Private keys will be stored on volatile memory, not on disk
                 showMessageDialog(p, "Claves generadas");
+                
+                // Enable key export/import buttons
                 p.exportPKBtn.setEnabled(true);
                 p.importPKBtn.setEnabled(true);
+                
+                // Delete tooltips
+                p.exportMsgBtn.setToolTipText(null);
+                p.importPKBtn.setToolTipText(null);
             } catch (Exception ex) {
                 Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                 showMessageDialog(p, "No se han podido generar las claves.");
@@ -202,6 +208,12 @@ public class MainController {
                 // Enable send and export buttons
                 p.sendBtn.setEnabled(true);
                 p.exportMsgBtn.setEnabled(true);
+                p.loadMessageBtn.setEnabled(true);
+                
+                // Delete tooltip text
+                p.sendBtn.setToolTipText(null);
+                p.exportMsgBtn.setToolTipText(null);
+                p.loadMessageBtn.setToolTipText(null);
             }
         });
     }

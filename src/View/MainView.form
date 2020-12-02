@@ -32,28 +32,28 @@
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jScrollPaneInput" min="-2" pref="628" max="-2" attributes="0"/>
+                      <Component id="jScrollPaneInput" min="-2" pref="622" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="sendBtn" min="-2" pref="71" max="-2" attributes="0"/>
+                      <Component id="sendBtn" min="-2" pref="77" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="exportMsgBtn" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="ipInput" min="-2" pref="188" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="connectBtn" min="-2" pref="93" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="loadFileBtn" min="-2" pref="128" max="-2" attributes="0"/>
+                      <Component id="loadMessageBtn" min="-2" pref="128" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="makeKeysBtn" min="-2" pref="128" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="importPKBtn" min="-2" pref="128" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="exportPKBtn" min="-2" pref="106" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
@@ -69,9 +69,9 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="ipInput" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="ipInput" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="connectBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="loadFileBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="loadMessageBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="exportPKBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="makeKeysBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="importPKBtn" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -98,15 +98,18 @@
     <Component class="javax.swing.JButton" name="sendBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Enviar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Necesario importar clave p&#xfa;blica "/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="loadFileBtn">
+    <Component class="javax.swing.JButton" name="loadMessageBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cargar mensaje"/>
+        <Property name="toolTipText" type="java.lang.String" value="Necesario importar clave p&#xfa;blica "/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -164,6 +167,7 @@
     <Component class="javax.swing.JButton" name="exportPKBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Exportar PK"/>
+        <Property name="toolTipText" type="java.lang.String" value="Necesario generar claves"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
@@ -186,6 +190,7 @@
     <Component class="javax.swing.JButton" name="importPKBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Importar PK"/>
+        <Property name="toolTipText" type="java.lang.String" value="Necesario generar claves"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
@@ -195,6 +200,7 @@
     <Component class="javax.swing.JButton" name="exportMsgBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Exportar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Necesario importar clave p&#xfa;blica "/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
