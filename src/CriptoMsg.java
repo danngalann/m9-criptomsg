@@ -29,11 +29,6 @@ public class CriptoMsg {
      */
     public static void main(String[] args) {
         new MainController();
-        
-        // Start client
-        // TODO: Start this from the Controller through GUI
-//        ChatClient client = new ChatClient("localhost", 3000);
-//        client.execute();
     }
     
 }

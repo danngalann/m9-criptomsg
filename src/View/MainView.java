@@ -53,6 +53,7 @@ public class MainView extends javax.swing.JFrame {
         setResizable(false);
 
         sendBtn.setText("Enviar");
+        sendBtn.setEnabled(false);
 
         loadFileBtn.setText("Cargar mensaje");
 
@@ -80,6 +81,7 @@ public class MainView extends javax.swing.JFrame {
         importPKBtn.setEnabled(false);
 
         exportMsgBtn.setText("Exportar");
+        exportMsgBtn.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

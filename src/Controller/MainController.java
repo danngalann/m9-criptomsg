@@ -5,7 +5,9 @@
  */
 package Controller;
 
+import Repository.FileManager;
 import Repository.KeyIO;
+import Repository.MessageManager;
 import Repository.RSA;
 import Socket.ChatClient;
 import View.MainView;
@@ -14,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,6 +38,7 @@ public class MainController {
     PublicKey remotePublicKey;
     FileFilter keyFilter;
     FileFilter messageFilter;
+    Map<String, Object> lastMessage = new HashMap<>();
 
     /**
      * Main Controllers constructor
@@ -115,7 +119,8 @@ public class MainController {
             if(message.isEmpty()){
                 showMessageDialog(p, "El mensaje no puede estar en blanco");
             } else {
-                // TODO: Send message to MessageManager
+                p.chatDisplay.setText(message);
+                lastMessage = MessageManager.sendMessage(message, remotePublicKey, (PrivateKey) rsaKeys.get("private"));
             }
         });
         
@@ -146,7 +151,7 @@ public class MainController {
             
             if(returnValue == JFileChooser.APPROVE_OPTION){
                 File selectedFile = fileChooser.getSelectedFile();
-                System.out.println(selectedFile.getAbsolutePath());
+                FileManager.saveMessage(lastMessage, selectedFile.getAbsolutePath());
             }
         });
         
@@ -193,6 +198,10 @@ public class MainController {
                 remotePublicKey = KeyIO.loadPublic(selectedFile.getAbsolutePath());
                 System.out.println(remotePublicKey.getAlgorithm());
                 showMessageDialog(p, "Clave importada");
+                
+                // Enable send and export buttons
+                p.sendBtn.setEnabled(true);
+                p.exportMsgBtn.setEnabled(true);
             }
         });
     }

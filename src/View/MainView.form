@@ -98,6 +98,7 @@
     <Component class="javax.swing.JButton" name="sendBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Enviar"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -194,6 +195,7 @@
     <Component class="javax.swing.JButton" name="exportMsgBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Exportar"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
