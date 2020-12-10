@@ -23,7 +23,7 @@ public class KeyIO {
     
     /**     * 
      * Serializes a public key on a predefined route.
-     * @deprecated Public and private keys are now stored on memory.
+     * @deprecated public keys should be serialized with serializePublic(PublicKey key, String path from GUI.
      * @param key 
      */
     public static void serializePublic(PublicKey key){
@@ -43,21 +43,17 @@ public class KeyIO {
      * @param key
      * @param path 
      */
-    public static void serializePublic(PublicKey key, String path){
-        try {
-         FileOutputStream fileOut = new FileOutputStream(path);
-         ObjectOutputStream out = new ObjectOutputStream(fileOut);
-         out.writeObject(key);
-         out.close();
-         fileOut.close();
-      } catch (IOException i) {
-         i.printStackTrace();
-      }
+    public static void serializePublic(PublicKey key, String path) throws Exception {
+        FileOutputStream fileOut = new FileOutputStream(path);
+        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+        out.writeObject(key);
+        out.close();
+        fileOut.close();
     }
     
     /**
      * Serializes a private key on a predefined route.
-     * @deprecated Public and private keys are now stored on memory.
+     * @deprecated Private keys are now stored on memory.
      * @param key 
      */
     public static void serializePrivate(PrivateKey key){
@@ -99,18 +95,13 @@ public class KeyIO {
      * @param path
      * @return 
      */
-    public static PublicKey loadPublic(String path){
-        PublicKey publicKey = null;
+    public static PublicKey loadPublic(String path) throws Exception {
         
-        try {
-         FileInputStream fileIn = new FileInputStream(path);
-         ObjectInputStream in = new ObjectInputStream(fileIn);
-         publicKey = (PublicKey) in.readObject();
-         in.close();
-         fileIn.close();
-        } catch (ClassNotFoundException | IOException ex) {
-            Logger.getLogger(KeyIO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        FileInputStream fileIn = new FileInputStream(path);
+        ObjectInputStream in = new ObjectInputStream(fileIn);
+        PublicKey publicKey = (PublicKey) in.readObject();
+        in.close();
+        fileIn.close();
         
         return publicKey;
     }

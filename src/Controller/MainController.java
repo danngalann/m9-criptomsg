@@ -119,8 +119,12 @@ public class MainController {
             if(message.isEmpty()){
                 showMessageDialog(p, "El mensaje no puede estar en blanco");
             } else {
-                p.chatDisplay.setText(message);
-                lastMessage = MessageManager.sendMessage(message, remotePublicKey, (PrivateKey) rsaKeys.get("private"));
+                try {
+                    p.chatDisplay.setText(message);
+                    lastMessage = MessageManager.sendMessage(message, remotePublicKey, (PrivateKey) rsaKeys.get("private"));
+                } catch (Exception ex) {
+                    showMessageDialog(p, "Error al generar el mensaje encriptad");
+                }
             }
         });
         
@@ -136,10 +140,20 @@ public class MainController {
             if(returnValue == JFileChooser.APPROVE_OPTION){
                 // Load message file
                 File selectedFile = fileChooser.getSelectedFile();
-                Map<String, Object> messageData = FileManager.readMessage(selectedFile.getAbsolutePath());
+                Map<String, Object> messageData = null;
+                try {
+                    messageData = FileManager.readMessage(selectedFile.getAbsolutePath());
+                } catch (Exception ex) {
+                    showMessageDialog(p, "Error al cargar el mensaje encriptado");
+                }
                 
                 // Decrypt message
-                String plainMessage = MessageManager.receiveMessage(messageData, remotePublicKey, (PrivateKey) rsaKeys.get("private"));
+                String plainMessage = "";
+                try {
+                    plainMessage = MessageManager.receiveMessage(messageData, remotePublicKey, (PrivateKey) rsaKeys.get("private"));
+                } catch (Exception ex) {
+                    showMessageDialog(p, "Error al desencriptar el mensaje");
+                }
                 
                 // Print message to chat display
                 p.chatDisplay.setText(plainMessage);
@@ -157,7 +171,11 @@ public class MainController {
             
             if(returnValue == JFileChooser.APPROVE_OPTION){
                 File selectedFile = fileChooser.getSelectedFile();
-                FileManager.saveMessage(lastMessage, selectedFile.getAbsolutePath());
+                try {
+                    FileManager.saveMessage(lastMessage, selectedFile.getAbsolutePath());
+                } catch (Exception ex) {
+                    showMessageDialog(p, "Error al exportar el mensaje encriptado");
+                }
             }
         });
         
@@ -191,7 +209,11 @@ public class MainController {
             
             if(returnValue == JFileChooser.APPROVE_OPTION){
                 File selectedFile = fileChooser.getSelectedFile();
-                KeyIO.serializePublic((PublicKey) rsaKeys.get("public"), selectedFile.getAbsolutePath());
+                try {
+                    KeyIO.serializePublic((PublicKey) rsaKeys.get("public"), selectedFile.getAbsolutePath());
+                } catch (Exception ex) {
+                    showMessageDialog(p, "Error al exportar la clave");
+                }
                 showMessageDialog(p, "Clave exportada");
             }
         });
@@ -207,7 +229,11 @@ public class MainController {
             
             if(returnValue == JFileChooser.APPROVE_OPTION){
                 File selectedFile = fileChooser.getSelectedFile();
-                remotePublicKey = KeyIO.loadPublic(selectedFile.getAbsolutePath());
+                try {
+                    remotePublicKey = KeyIO.loadPublic(selectedFile.getAbsolutePath());
+                } catch (Exception ex) {
+                    showMessageDialog(p, "Error al importar la clave");
+                }
                 System.out.println(remotePublicKey.getAlgorithm());
                 showMessageDialog(p, "Clave importada");
                 
