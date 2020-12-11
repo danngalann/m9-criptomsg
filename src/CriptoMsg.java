@@ -28,6 +28,7 @@ public class CriptoMsg {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        // Made with love by Marc Sedano and Daniel Galan
         new MainController();
     }
     
