@@ -86,7 +86,7 @@ public class MainView extends javax.swing.JFrame {
         importPKBtn.setEnabled(false);
 
         exportMsgBtn.setText("Exportar");
-        exportMsgBtn.setToolTipText("Necesario importar clave pública ");
+        exportMsgBtn.setToolTipText("Necesario enviar un mensaje");
         exportMsgBtn.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

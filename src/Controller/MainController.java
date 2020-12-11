@@ -123,6 +123,8 @@ public class MainController {
                 try {
                     p.chatDisplay.setText(message);
                     lastMessage = MessageManager.sendMessage(message, remotePublicKey, (PrivateKey) rsaKeys.get("private"));
+                    p.exportMsgBtn.setEnabled(true);
+                    p.exportMsgBtn.setToolTipText(null);
                 } catch (Exception ex) {
                     showMessageDialog(p, "Error al generar el mensaje encriptad");
                 }
@@ -196,7 +198,6 @@ public class MainController {
                 p.importPKBtn.setEnabled(true);
                 
                 // Delete tooltips
-                p.exportMsgBtn.setToolTipText(null);
                 p.importPKBtn.setToolTipText(null);
             } catch (Exception ex) {
                 Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
@@ -245,12 +246,10 @@ public class MainController {
                 
                 // Enable send and export buttons
                 p.sendBtn.setEnabled(true);
-                p.exportMsgBtn.setEnabled(true);
                 p.loadMessageBtn.setEnabled(true);
                 
                 // Delete tooltip text
-                p.sendBtn.setToolTipText(null);
-                p.exportMsgBtn.setToolTipText(null);
+                p.sendBtn.setToolTipText(null);                
                 p.loadMessageBtn.setToolTipText(null);
             }
         });

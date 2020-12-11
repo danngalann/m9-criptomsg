@@ -200,7 +200,7 @@
     <Component class="javax.swing.JButton" name="exportMsgBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Exportar"/>
-        <Property name="toolTipText" type="java.lang.String" value="Necesario importar clave p&#xfa;blica "/>
+        <Property name="toolTipText" type="java.lang.String" value="Necesario enviar un mensaje"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
