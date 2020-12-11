@@ -23,7 +23,7 @@ public class KeyIO {
     
     /**     * 
      * Serializes a public key on a predefined route.
-     * @deprecated public keys should be serialized with serializePublic(PublicKey key, String path from GUI.
+     * @deprecated public keys should be serialized with serializePublic(PublicKey key, String path) from GUI.
      * @param key 
      */
     public static void serializePublic(PublicKey key){

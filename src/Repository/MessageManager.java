@@ -5,6 +5,7 @@
  */
 package Repository;
 
+import Exceptions.MessageIntegrityCompromised;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.HashMap;
@@ -66,10 +67,21 @@ public class MessageManager {
 
         // Decrypt message with AES key
         String message = AES.decrypt(encryptedMessage, simetricKey);
+        
+        // Check message integrity
+        if(!isValidHash(hash, message)){
+            throw new MessageIntegrityCompromised("El mensaje está corrupto");
+        }
 
         // Store decrypted message on return variable
         plainMessage = message;
         
         return plainMessage;
+    }
+    
+    static private boolean isValidHash(String hash, String text){
+        String localHash = SHA.makeHash(text);
+        
+        return hash.equals(localHash);
     }
 }

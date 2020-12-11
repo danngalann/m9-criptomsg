@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Exceptions.MessageIntegrityCompromised;
 import Repository.FileManager;
 import Repository.KeyIO;
 import Repository.MessageManager;
@@ -152,7 +153,12 @@ public class MainController {
                 try {
                     plainMessage = MessageManager.receiveMessage(messageData, remotePublicKey, (PrivateKey) rsaKeys.get("private"));
                 } catch (Exception ex) {
-                    showMessageDialog(p, "Error al desencriptar el mensaje");
+                    if(ex instanceof MessageIntegrityCompromised){
+                        showMessageDialog(p, ex.getMessage());
+                    } else {
+                        showMessageDialog(p, "Error al desencriptar el mensaje");
+                    }
+                    
                 }
                 
                 // Print message to chat display
