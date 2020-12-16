@@ -159,6 +159,8 @@
     <Component class="javax.swing.JButton" name="connectBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Conectar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Este desarrollo se ha abandonado"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -175,6 +177,10 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="ipInput">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="toolTipText" type="java.lang.String" value="Este desarrollo se ha abandonado"/>
+      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>

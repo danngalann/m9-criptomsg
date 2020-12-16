@@ -74,10 +74,15 @@ public class MainView extends javax.swing.JFrame {
         jScrollPaneChat1.setViewportView(chatDisplay);
 
         connectBtn.setText("Conectar");
+        connectBtn.setToolTipText("Este desarrollo se ha abandonado");
+        connectBtn.setEnabled(false);
 
         exportPKBtn.setText("Exportar PK");
         exportPKBtn.setToolTipText("Necesario generar claves");
         exportPKBtn.setEnabled(false);
+
+        ipInput.setEditable(false);
+        ipInput.setToolTipText("Este desarrollo se ha abandonado");
 
         makeKeysBtn.setText("Generar Claves");
 
